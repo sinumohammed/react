@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
+  // props include data that we give to a component /read only, where as
+  // state includes data that are local or private to that component.
   state = {
     value: this.props.value
   };
 
-  handleIncrement = product => {
-    // In angualr - all browsers events are monkey patch
+  handleIncrement = () => {
     this.setState({ value: this.state.value + 1 });
-    // argument from event
-    console.log(product);
   };
 
   render() {
@@ -18,7 +17,7 @@ class Counter extends Component {
         {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handleIncrement({ id: 5 })}
+          onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         >
           Increment
