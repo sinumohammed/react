@@ -4,14 +4,12 @@ class Counter extends Component {
   state = {
     count: 1
   };
-  //   constructor() {
-  //     // experimental but noisy
-  //     super();
-  //     this.handleIncrement = this.handleIncrement.bind(this);
-  //   }
-  // convert to arrow function to get the context
-  handleIncrement = () => {
-    console.log("Increment clicked", this);
+
+  handleIncrement = product => {
+    // In angualr - all browsers events are monkey patch
+    this.setState({ count: this.state.count + 1 });
+    // argument from event
+    console.log(product);
   };
 
   render() {
@@ -19,7 +17,7 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.handleIncrement({ id: 5 })}
           className="btn btn-secondary btn-sm"
         >
           Increment
